@@ -19,24 +19,24 @@ void merge (int arr[], int l, int mid, int r){
     int k = l;
     
     while (i < sizeL && j < sizeR){
-        if (arr[i] < arr[j]){
-            arr[k] = arr[i];
+        if (left[i] < right[j]){
+            arr[k] = left[i];
             i++;
             k++;
         }
         else{
-            arr[k] = arr[j];
+            arr[k] = right[j];
             j++;
             k++;
         }
     }
     while (i < sizeL){
-        arr[k] = arr[i];
+        arr[k] = left[i];
         i++;
         k++;
     }
     while ( j < sizeR){
-        arr[k] = arr[j];
+        arr[k] = right[j];
         j++;
         k++;
         
@@ -51,13 +51,13 @@ void merge (int arr[], int l, int mid, int r){
 void mergeSort(int arr[], int l, int r){
     if(l < r ){
         int mid = (l + r) /2;
-        mergeSort(arr, mid, r);
-        mergeSort(arr, l, mid+1);
+        mergeSort(arr, l, mid);
+        mergeSort(arr, mid + 1, r);
         merge(arr, l, mid, r);
     }
 }
 int main(){
-    int list[] = {4,6,77,8,9,4,2.,99,74,864,};
+    int list[] = {4,6,77,8,9,4,2,99,74,864};
     int n = sizeof(list) / sizeof(list[0]);
     mergeSort(list, 0,  n-1);
     
